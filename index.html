@@ -1,65 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gift Reveal</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f7f7f7;
-    }
-    img {
-      max-width: 90%;
-      max-height: 90vh;
-      border-radius: 10px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Fast Load Gift Coupon</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f7f7f7;
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .coupon {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+  }
+  .coupon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: filter 1s ease;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      #ff4081,
+      #ff4081 20px,
+      #f50057 20px,
+      #f50057 40px
+    );
+    transition: height 3s ease-in-out;
+  }
+  .loader {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    font-size:18px;
+    color:#333;
+  }
+</style>
 </head>
 <body>
-  <img id="gift" src="" alt="Gift Image">
 
-  <script>
-    const images = [
-      "https://i.ibb.co/bjg6tZd2/Photo-Room-20250915-184032-1.png",
-      "https://i.ibb.co/Cp7kQkm4/Photo-Room-20250915-184032-2.png",
-      "https://i.ibb.co/gbygbqtr/Photo-Room-20250915-184032-3.png",
-      "https://i.ibb.co/0y4HynxF/Photo-Room-20250915-183005-3.png",
-      "https://i.ibb.co/dJgRQCmM/Photo-Room-20250915-183005-5.png",
-      "https://i.ibb.co/q3sxKWyC/Photo-Room-20250915-183005-7.png",
-      "https://i.ibb.co/zhX6Dz5d/Photo-Room-20250915-183005-9.png",
-      "https://i.ibb.co/sp7scHNM/Photo-Room-20250915-183005-10.png",
-      "https://i.ibb.co/Z61WtNGZ/Photo-Room-20250915-183005-8.png",
-      "https://i.ibb.co/KTJ3Mbt/Photo-Room-20250915-183005-11.png",
-      "https://i.ibb.co/GQf8QQ68/Photo-Room-20250915-183005-13.png",
-      "https://i.ibb.co/6R4kJHPv/Photo-Room-20250915-183005-15.png",
-      "https://i.ibb.co/FkhYTYWM/Photo-Room-20250915-183005-17.png",
-      "https://i.ibb.co/wrPnh42r/Photo-Room-20250915-183005-19.png",
-      "https://i.ibb.co/CpXpgXsK/Photo-Room-20250915-183005-18.png",
-      "https://i.ibb.co/sJDS5RxJ/Photo-Room-20250915-183005-20.png",
-      "https://i.ibb.co/GvB7Hwx6/Photo-Room-20250915-183005-21.png",
-      "https://i.ibb.co/gLdQCgtt/Photo-Room-20250915-183005-22.png",
-      "https://i.ibb.co/RkXWDcSy/Photo-Room-20250915-183005-23.png",
-      "https://i.ibb.co/QjcP4ZxJ/Photo-Room-20250915-183005-24.png",
-      "https://i.ibb.co/M5MvCC7D/Photo-Room-20250915-183004-1.png",
-      "https://i.ibb.co/Kcs5YVw1/Photo-Room-20250915-183004-2.png",
-      "https://i.ibb.co/wFB6N4Kg/Photo-Room-20250915-183005-4.png",
-      "https://i.ibb.co/MDZp9g0z/Photo-Room-20250915-183005-6.png",
-      "https://i.ibb.co/pBcMPhtn/Photo-Room-20250915-183005-12.png",
-      "https://i.ibb.co/N2chXzmK/Photo-Room-20250915-183005-14.png",
-      "https://i.ibb.co/sdsScD5m/Photo-Room-20250915-183005-16.png"
-    ];
+<div class="coupon">
+  <div class="loader" id="loader">Loading...</div>
+  <img id="gift" src="" alt="Gift Coupon" style="display:none; filter: blur(8px);">
+  <div class="overlay" id="overlay" style="display:none;"></div>
+</div>
 
-    function showRandom() {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      document.getElementById("gift").src = images[randomIndex];
-    }
+<script>
+const images = [
+  "https://i.ibb.co/bjg6tZd2/Photo-Room-20250915-184032-1.png",
+  "https://i.ibb.co/Cp7kQkm4/Photo-Room-20250915-184032-2.png",
+  "https://i.ibb.co/gbygbqtr/Photo-Room-20250915-184032-3.png",
+  "https://i.ibb.co/0y4HynxF/Photo-Room-20250915-183005-3.png",
+  "https://i.ibb.co/dJgRQCmM/Photo-Room-20250915-183005-5.png",
+  "https://i.ibb.co/q3sxKWyC/Photo-Room-20250915-183005-7.png",
+  "https://i.ibb.co/zhX6Dz5d/Photo-Room-20250915-183005-9.png",
+  "https://i.ibb.co/sp7scHNM/Photo-Room-20250915-183005-10.png",
+  "https://i.ibb.co/Z61WtNGZ/Photo-Room-20250915-183005-8.png",
+  "https://i.ibb.co/KTJ3Mbt/Photo-Room-20250915-183005-11.png",
+  "https://i.ibb.co/GQf8QQ68/Photo-Room-20250915-183005-13.png",
+  "https://i.ibb.co/6R4kJHPv/Photo-Room-20250915-183005-15.png",
+  "https://i.ibb.co/FkhYTYWM/Photo-Room-20250915-183005-17.png",
+  "https://i.ibb.co/wrPnh42r/Photo-Room-20250915-183005-19.png",
+  "https://i.ibb.co/CpXpgXsK/Photo-Room-20250915-183005-18.png",
+  "https://i.ibb.co/sJDS5RxJ/Photo-Room-20250915-183005-20.png",
+  "https://i.ibb.co/GvB7Hwx6/Photo-Room-20250915-183005-21.png",
+  "https://i.ibb.co/gLdQCgtt/Photo-Room-20250915-183005-22.png",
+  "https://i.ibb.co/RkXWDcSy/Photo-Room-20250915-183005-23.png",
+  "https://i.ibb.co/QjcP4ZxJ/Photo-Room-20250915-183005-24.png",
+  "https://i.ibb.co/M5MvCC7D/Photo-Room-20250915-183004-1.png",
+  "https://i.ibb.co/Kcs5YVw1/Photo-Room-20250915-183004-2.png",
+  "https://i.ibb.co/wFB6N4Kg/Photo-Room-20250915-183005-4.png",
+  "https://i.ibb.co/MDZp9g0z/Photo-Room-20250915-183005-6.png",
+  "https://i.ibb.co/pBcMPhtn/Photo-Room-20250915-183005-12.png",
+  "https://i.ibb.co/N2chXzmK/Photo-Room-20250915-183005-14.png",
+  "https://i.ibb.co/sdsScD5m/Photo-Room-20250915-183005-16.png"
+];
 
-    // हर बार पेज load पर random photo दिखेगा
-    showRandom();
-  </script>
+function showRandomCoupon() {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const giftImg = document.getElementById("gift");
+  const overlay = document.getElementById("overlay");
+  const loader = document.getElementById("loader");
+
+  // Blurred preview load
+  giftImg.src = images[randomIndex];
+  giftImg.onload = function() {
+    loader.style.display = "none"; // hide loader
+    giftImg.style.display = "block";
+    overlay.style.display = "block";
+    overlay.style.height = "100%";
+
+    // Reveal overlay animation
+    setTimeout(() => {
+      overlay.style.height = "0%";
+      giftImg.style.filter = "blur(0px)"; // full clarity after reveal
+    }, 100);
+  };
+}
+
+showRandomCoupon();
+</script>
+
 </body>
 </html>
