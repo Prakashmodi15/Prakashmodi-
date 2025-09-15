@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gift Reveal</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f7f7f7;
+    }
+    img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <img id="gift" src="" alt="Gift Image">
+
+  <script>
+    const images = [
+      https://i.ibb.co/bjg6tZd2/Photo-Room-20250915-184032-1.png
+https://i.ibb.co/Cp7kQkm4/Photo-Room-20250915-184032-2.png
+https://i.ibb.co/gbygbqtr/Photo-Room-20250915-184032-3.png
+https://i.ibb.co/0y4HynxF/Photo-Room-20250915-183005-3.png
+https://i.ibb.co/dJgRQCmM/Photo-Room-20250915-183005-5.png
+https://i.ibb.co/q3sxKWyC/Photo-Room-20250915-183005-7.png
+https://i.ibb.co/zhX6Dz5d/Photo-Room-20250915-183005-9.png
+https://i.ibb.co/sp7scHNM/Photo-Room-20250915-183005-10.png
+https://i.ibb.co/Z61WtNGZ/Photo-Room-20250915-183005-8.png
+https://i.ibb.co/KTJ3Mbt/Photo-Room-20250915-183005-11.png
+https://i.ibb.co/GQf8QQ68/Photo-Room-20250915-183005-13.png
+https://i.ibb.co/6R4kJHPv/Photo-Room-20250915-183005-15.png
+https://i.ibb.co/FkhYTYWM/Photo-Room-20250915-183005-17.png
+https://i.ibb.co/wrPnh42r/Photo-Room-20250915-183005-19.png
+https://i.ibb.co/CpXpgXsK/Photo-Room-20250915-183005-18.png
+https://i.ibb.co/sJDS5RxJ/Photo-Room-20250915-183005-20.png
+https://i.ibb.co/GvB7Hwx6/Photo-Room-20250915-183005-21.png
+https://i.ibb.co/gLdQCgtt/Photo-Room-20250915-183005-22.png
+https://i.ibb.co/RkXWDcSy/Photo-Room-20250915-183005-23.png
+https://i.ibb.co/QjcP4ZxJ/Photo-Room-20250915-183005-24.png
+https://i.ibb.co/M5MvCC7D/Photo-Room-20250915-183004-1.png
+https://i.ibb.co/Kcs5YVw1/Photo-Room-20250915-183004-2.png
+https://i.ibb.co/wFB6N4Kg/Photo-Room-20250915-183005-4.png
+https://i.ibb.co/MDZp9g0z/Photo-Room-20250915-183005-6.png
+https://i.ibb.co/pBcMPhtn/Photo-Room-20250915-183005-12.png
+https://i.ibb.co/N2chXzmK/Photo-Room-20250915-183005-14.png
+https://i.ibb.co/sdsScD5m/Photo-Room-20250915-183005-16.png   ];
+
+    function showRandom() {
+      const randomIndex = Math.floor(Math.random() * images.length);
+      document.getElementById("gift").src = images[randomIndex];
+    }
+
+    // हर बार पेज load पर random photo दिखेगा
+    showRandom();
+  </script>
+</body>
+</html>Math.floor(Math.random() * images.length);
+      document.getElementById("gift").src = images[randomIndex];
+    }
+
+    // हर बार पेज load पर random photo दिखेगा
+    showRandom();
+  </script>
+</body>
+</html>
